@@ -1,0 +1,23 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<!-- babel will transpile de HTML into JSX -->
+<script type="text/babel"> 
+  const rootElement = document.getElementById('root');
+  // Components need to capitalize, otherwise babel will take name as a string
+  // and won't work
+  const Message = props => <div>{props.children} {props.msg}</div>
+  const element = (
+    <div className="container">
+      <Message children='Hello World'/>
+      <Message children='Chiaoo World'/>
+      <Message>
+        Another message
+        <Message msg="and more">Nesting message</Message>
+      </Message>
+    </div>
+  )
+  console.log(element)
+  ReactDOM.render(element, rootElement);
+</script>
