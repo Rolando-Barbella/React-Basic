@@ -7,33 +7,33 @@
    <!-- https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types -->
   <div id="root"></div>
 
-  <script type="text/babel">
-function SayHello(props) {
-  return (
-    <div>
-      Hello {props.firstName} 
-      {props.lastName || 'Unknown'}!
-    </div>
+<script type="text/babel">
+  function SayHello(props) {
+    return (
+      <div>
+        Hello {props.firstName} 
+        {props.lastName || 'Unknown'}!
+      </div>
+    )
+  }
+
+  // const PropTypes = {
+  //   string(props, propName, componentName ) {
+  //     if( typeof props[propName] !== 'string') {
+  //       return new Error(`You should pass a string ${propName}
+  //       in ${componentName}`)
+  //     }
+  //   }
+  // }
+
+  SayHello.propTypes = {
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+  }
+
+  ReactDOM.render(
+    <SayHello firstName={true} />,
+    document.getElementById('root')
   )
-}
-
-// const PropTypes = {
-//   string(props, propName, componentName ) {
-//     if( typeof props[propName] !== 'string') {
-//       return new Error(`You should pass a string ${propName}
-//       in ${componentName}`)
-//     }
-//   }
-// }
-
-SayHello.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-}
-
-ReactDOM.render(
-  <SayHello firstName={true} />,
-  document.getElementById('root')
-)
 </script>
 </body>

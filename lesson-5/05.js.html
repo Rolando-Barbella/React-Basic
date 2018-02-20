@@ -1,0 +1,24 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <!-- This is the equivalent of <div>No message</div> -->
+  <!-- React.createElement('div', null, message) -->
+  <script type="text/babel"> 
+    function Message({message}) {
+      // You can't have an if statement inise the { curly braces }
+      <div>
+        { message ? (
+          <div>{message}</div>
+        ) : (
+          <div>No Message</div>
+        )}
+      </div>
+    }
+    ReactDOM.render(
+      <Message message="Hello world"/>,
+      document.getElementById('root'),
+    )
+  </script>
+</body>
