@@ -1,1 +1,1 @@
-lesson 18 is next
+# React small basic examples
