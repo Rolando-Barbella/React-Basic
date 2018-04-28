@@ -1,0 +1,72 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.3.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script type="text/babel">
+    
+    class City extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { loading: true };
+        setTimeout(() => {
+          this.setState({loading: false})
+        }, 100);
+      }
+      
+      componentWillReceiveProps(nextProps) {
+        this.setState({ loading: true });
+        setTimeout(() => {
+          this.setState({loading: false})
+        }, 100);
+      }
+      
+      render() {
+        if(this.state.loading) {
+          return (
+            <p>...Loading</p>
+          )
+        }
+        return (
+          <div>
+            <p>{this.props.name}</p>
+          </div>
+        )
+      }
+    }
+    
+    class App extends React.Component {
+      state = { city: 'vienna' };
+
+      selectCity = evt => {
+        const newValue = evt.target.value;
+        this.setState(state => {
+          if (state.city === newValue) {
+            return null;
+          }
+          return {
+            city: newValue
+          };
+        });
+      };
+
+      render() {
+        return (
+        <div>
+          <button type="button" value="vienna" onClick={this.selectCity}>
+            Vienna
+          </button>
+          <button type="button" value="paris" onClick={this.selectCity}>
+            Paris
+          </button>
+          <City name={this.state.city} />
+        </div>
+        );
+      }
+    }
+    ReactDOM.render(
+      <App />,
+      document.getElementById('root'),
+    )
+  </script>
+</body>
