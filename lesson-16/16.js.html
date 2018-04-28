@@ -16,7 +16,7 @@ class MyFancyForm extends React.Component {
   state = {multiline: '', commaSeparated: '', multiSelect: []}
   handleCommaSeparatedChange = event => {
     const { value }  = event.target;
-    // With Boolean we, will filter any that are empty strings
+    // With Boolean we filter any empty strings
     // join('\n') will make a new line
     const allVals = value
       .split(',')

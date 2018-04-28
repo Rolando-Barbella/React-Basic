@@ -1,0 +1,44 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.3.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script type="text/babel">
+
+  const Profile = props => (
+    <div>
+      Name: {props.user.name}
+    </div>
+  )
+  
+  class App extends React.Component {
+    state = { user: { name: 'Chris'}, age: 100 };
+    
+    componentDidCatch(error, info) {
+      console.log({error});
+      console.log({info})
+      this.setState(state => ({...state, hasErrror: true }))
+    }
+    
+    updateUser = () => {
+      this.setState(state => ({...state, user: null  }));
+    }
+    render() {
+      if(this.state.hasErrror) {
+        return <div>Sorry something went wrong</div>
+      }
+      return (
+        <div>
+         <Profile user={this.state.user}/>
+         <p>{this.state.age}</p>
+         <button onClick={this.updateUser}>Update</button>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(
+    <App />,
+    document.getElementById('root'),
+  )
+</script>
+</body>

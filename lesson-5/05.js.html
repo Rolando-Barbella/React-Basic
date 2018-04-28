@@ -8,13 +8,15 @@
   <script type="text/babel"> 
     function Message({message}) {
       // You can't have an if statement inise the { curly braces }
-      <div>
-        { message ? (
-          <div>{message}</div>
-        ) : (
-          <div>No Message</div>
-        )}
-      </div>
+      return (
+        <div>
+          { message ? (
+            <div>{message}</div>
+          ) : (
+            <div>No Message</div>
+          )}
+        </div>
+      );
     }
     ReactDOM.render(
       <Message message="Hello world"/>,

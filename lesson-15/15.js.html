@@ -22,9 +22,10 @@ class NameForm extends React.Component {
   }
 
   handleChange = event => {
-    const {value} = event.target
+    const { value } = event.target
     this.setState({
       error: this.props.getErrorMessage(value),
+      yo: event.target.value
     })
   }
 
@@ -46,9 +47,6 @@ class NameForm extends React.Component {
           </div>
         ) : null}
         {yo}
-        {
-          [1,2,4].map(n => <p>{n}</p>)
-        }
         <button
           disabled={Boolean(error)}
           type="submit"

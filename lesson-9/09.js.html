@@ -5,11 +5,12 @@
 
   <div id="root"></div>
   <script type="text/babel"> 
+    
     class StopWatch extends React.Component {
       state = {lapse: 0, running: false }
       handleClick = () => {
         this.setState(state => {
-          if(state.running) {
+          if (state.running) {
             clearInterval(this.timer);
           } else {
             const startTime = Date.now() - this.state.lapse;
