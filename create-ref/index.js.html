@@ -1,0 +1,41 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.3.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.3.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/babel">
+        
+class App extends React.Component {
+  fullName = React.createRef();
+
+  handleBlur = () => {
+    this.fullName.current.blur();
+  }
+
+  handleFocus = () => {
+    this.fullName.current.focus();
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <label>Full Name</label>
+          <input type="text" ref={this.fullName}/>
+        </div>
+        <button type="button" value="vienna" onClick={this.handleFocus}>
+          Vienna
+        </button>
+        <button type="button" value="paris" onClick={this.handleBlur}>
+          Paris
+        </button>
+      </div>
+    );
+  }
+}
+ReactDOM.render(
+  <App />,
+  document.getElementById('root'),
+)
+</script>
+</body>
