@@ -1,0 +1,61 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.3.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.3.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
+  <script type="text/babel">
+    
+  class SortArray extends React.Component {
+    state = { arr:[] }
+    static getDerivedStateFromProps(nextProps, prevState) {
+      console.log('sort List');
+      return {
+        arr: nextProps.arr.sort(),
+      }
+    }
+    render() {
+      return (
+        <div>
+          <button onClick={() => this.setState({})}>Rerender</button>
+          {this.state.arr.map((x,i) => <p key={i}>{x}</p>)}
+        </div>
+      );
+    }
+  };
+    
+
+const styles = {
+  fontFamily: "sans-serif",
+  textAlign: "center"
+};
+        
+class App extends React.Component {
+  state = {
+    names: this.getRandomNames(),
+  }
+  getRandomNames() {
+    const names = [];
+    for (let i = 0; i < 100; i += 1) {
+      names.push(faker.name.findName());
+    }
+    return names;
+  }
+  
+  render() {
+    return (
+      <div>
+        <button onClick={() => this.setState({ names: this.getRandomNames() })}>
+          Random Names
+        </button>
+        <SortArray arr={this.state.names}/>
+      </div>
+    );
+  }
+}
+ReactDOM.render(
+  <App />,
+  document.getElementById('root'),
+)
+</script>
+</body>

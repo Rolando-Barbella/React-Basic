@@ -1,0 +1,47 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.3.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.3.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script type="text/babel">
+
+const sort = (data) => data.sort();
+        
+class App extends React.Component {
+  // static propTypes = {
+  //   names: PropTypes.array.isRequired,
+  //   color: PropTypes.string.isRequired,
+  // };
+
+  state = {
+    names: [],
+    sortedNames: ['Rolando', 'Jose', 'Laya']
+  }
+  
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(prevState.names !== nextProps.names) {
+      return {
+        sortedNames: sort(nextProps.names || [])
+      }
+    }
+    return null;
+  }
+  
+  render() {
+    return (
+      <div>
+        <List color={this.props.color}>
+          {this.state.sortedNames.map(name => (
+            <li key={name}>{name}</li>
+          ))}
+        </List>
+      </div>
+    );
+  }
+}
+ReactDOM.render(
+  <App />,
+  document.getElementById('root'),
+)
+</script>
+</body>
