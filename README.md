@@ -1,3 +1,3 @@
 # React small basic examples
 
-From kdc egghead tutorials
+Small, simple react examples + React 16+ new features.

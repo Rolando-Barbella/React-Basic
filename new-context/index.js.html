@@ -1,0 +1,72 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.3.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.3.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
+  <script type="text/babel">
+  //Make new context
+  const MyContext = React.createContext();
+  //Then create a provider component
+  class MyProvider extends React.Component {
+    state = {
+      name: "Rolando",
+      age: 100,
+      cool: true
+    };
+    render() {
+      return(
+      <MyContext.Provider value={{
+        state: this.state,
+        growAYear:() => this.setState({ age: this.state.age + 1 })
+      }}>
+        {this.props.children}
+      </MyContext.Provider>
+      )
+    }
+  }
+
+  const Family = (props) => (
+    <div>
+      <Person/>
+    </div>
+  )
+
+  class Person extends React.Component {
+    render() {
+      return (
+        <div>
+          <MyContext.Consumer >
+            {(context) => (
+              <React.Fragment>
+                <p>Age: {context.state.age}</p>
+                <p>Name: {context.state.name}</p>
+                <button onClick={context.growAYear}>+</button>
+              </React.Fragment>
+            )}
+          </MyContext.Consumer>
+        </div>
+      )
+    }
+  }
+
+  class App extends React.Component {  
+    render() {
+      return (
+        <MyProvider>
+          <div className="App">
+            <header>
+              <h1 className="App-title">Welcome to React</h1>
+            </header>
+            <Family/>
+          </div>
+      </MyProvider>
+      );
+    }
+  }
+  ReactDOM.render(
+    <App />,
+    document.getElementById('root'),
+  )
+</script>
+</body>
